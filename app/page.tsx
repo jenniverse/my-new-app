@@ -1,25 +1,10 @@
 'use client'
 
-import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
 export default function Home() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
-    }
-
-    window.addEventListener('mousemove', handleMouseMove)
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove)
-    }
-  }, [])
-
   return (
-    <main className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 flex items-center justify-center overflow-hidden">
+    <main className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-blue-900 flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(20)].map((_, i) => (
           <motion.div
@@ -43,20 +28,13 @@ export default function Home() {
           />
         ))}
       </div>
-      <motion.div
-        className="relative bg-white bg-opacity-20 backdrop-blur-lg rounded-3xl p-12 shadow-lg"
-        style={{
-          transformStyle: 'preserve-3d',
-        }}
-        animate={{
-          rotateX: mousePosition.y / 50,
-          rotateY: -mousePosition.x / 50,
-        }}
-      >
-        <h1 className="text-8xl font-bold font-mono text-white text-center" style={{ textShadow: '0 0 10px rgba(255,255,255,0.5)' }}>
-          Hello
-        </h1>
-      </motion.div>
+      <div className="relative">
+        <div className="hello-card bg-white font-mono bg-opacity-10 backdrop-blur-lg rounded-[40px] p-16 shadow-lg">
+          <h1 className="text-8xl font-bold text-white text-center" style={{ textShadow: '0 0 10px rgba(255,255,255,0.3)' }}>
+            Hello
+          </h1>
+        </div>
+      </div>
     </main>
   )
 }
